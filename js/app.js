@@ -21,4 +21,26 @@ function alterarStatus(id) {
     botao.textContent = "Devolver";
     botao.classList.add("dashboard__item__button--return");
   }
+  
+  // Recalcula o número de jogos alugados e disponíveis sempre que o status é alterado
+  verificarJogosAlugados();
+}
+
+function verificarJogosAlugados() {
+  let jogos = document.querySelectorAll(".dashboard__items__item");
+  let jogosAlugados = 0;
+  let jogosDisponiveis = 0;
+
+  jogos.forEach(jogo => {
+    let imagem = jogo.querySelector(".dashboard__item__img");
+    
+    if (imagem.classList.contains("dashboard__item__img--rented")) {
+      jogosAlugados++;
+    } else {
+      jogosDisponiveis++;
+    }
+  });
+
+  console.log(`Jogos alugados: ${jogosAlugados}`);
+  console.log(`Jogos disponíveis: ${jogosDisponiveis}`);
 }
